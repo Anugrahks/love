@@ -1,0 +1,422 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Private cinematic Valentine’s romantic interactive web app (“You Are My Favorite Love Story”)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a mobile-first single-page experience with consistent romantic theme (colors, typography, glassmorphism) and gentle fades/transitions across sections.",
+      "acceptanceCriteria": [
+        "App renders cleanly on common mobile widths (e.g., 360px) through desktop widths without layout breakage.",
+        "Theme colors and typography are applied consistently across all sections (no default/un-themed screens).",
+        "Glassmorphism card styling is used for key content blocks (timeline entries, flip cards, final prompt).",
+        "Transitions between major sections use gentle fades/slow easing (no abrupt jumps)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global theme styles (soft pink/deep red/warm beige + subtle gold accents), typography setup (script-like headings + clean sans-serif body), reusable glassmorphism card utilities, and slow fade/transition primitives used across the single-page experience."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme tokens for the romantic palette, shadows/glows, and slow easing/animation durations to support consistent styling across sections."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Implement the single-page layout composing Landing + sections 1–3 + final moment, with a consistent themed layout wrapper and smooth cross-section transitions (e.g., fade-in on reveal)."
+        },
+        {
+          "path": "frontend/src/components/valentine/GlassCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable GlassCard wrapper to standardize glassmorphism surfaces for timeline entries, flip cards, and final prompt."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add an ambient animated background layer (floating petals and/or glowing hearts) that runs throughout without blocking interaction.",
+      "acceptanceCriteria": [
+        "Ambient animation is visible behind content and continues across sections.",
+        "Animation does not significantly degrade performance on mobile (no obvious stutter during scroll).",
+        "Foreground content remains clickable and readable over the background layer."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/romantic-bg-texture.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add generated background texture asset and keep it as a static frontend asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/petal-sprite-set.dim_512x512.png",
+          "operation": "create",
+          "description": "Add generated petal sprite set used by the ambient background animation."
+        },
+        {
+          "path": "frontend/public/assets/generated/heart-sprite-set.dim_512x512.png",
+          "operation": "create",
+          "description": "Add generated glowing heart sprite set used by the ambient background animation."
+        },
+        {
+          "path": "frontend/src/components/valentine/AmbientBackground.tsx",
+          "operation": "create",
+          "description": "Implement a behind-content ambient animation layer (petals/hearts) using the generated sprite assets; ensure it is non-interactive (pointer-events disabled) and optimized for mobile performance."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire AmbientBackground to render across the entire single-page experience behind all sections."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add gesture-initiated background music with mute toggle and in-session user music upload replacing the default track.",
+      "acceptanceCriteria": [
+        "Music starts only after the user taps the landing screen button (no autoplay on initial load).",
+        "Mute toggle stops/starts audio reliably and reflects current state.",
+        "User can upload an audio file and the app switches to it for playback without a page reload.",
+        "If no upload is provided, a default bundled track is used."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/audio/default-romantic-track.mp3",
+          "operation": "create",
+          "description": "Add a bundled default romantic instrumental track as a static frontend asset for fallback playback."
+        },
+        {
+          "path": "frontend/src/components/valentine/AudioController.tsx",
+          "operation": "create",
+          "description": "Implement background music controller: starts only after an explicit user gesture, supports mute/unmute, and supports replacing the current session track with a user-uploaded audio file (object URL), without reloading."
+        },
+        {
+          "path": "frontend/src/components/valentine/CustomizePanel.tsx",
+          "operation": "create",
+          "description": "Add an on-theme Customize panel including background music upload UI that updates the AudioController source immediately."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire AudioController at app level and connect its controls to Landing CTA (start playback) and the always-available mute/unmute toggle."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build the Landing Screen with exact intro text and glowing CTA; on tap play heartbeat SFX and fade into the main experience.",
+      "acceptanceCriteria": [
+        "Landing displays the specified text and CTA label exactly (including emoji).",
+        "CTA has a visible glow/animated emphasis state.",
+        "On CTA tap, a heartbeat SFX plays and the UI transitions via a fade into the next section.",
+        "If audio is muted, heartbeat does not play (or plays at 0 volume) while still transitioning."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/audio/heartbeat-soft.mp3",
+          "operation": "create",
+          "description": "Add a soft heartbeat sound effect as a static frontend asset for Landing CTA interaction."
+        },
+        {
+          "path": "frontend/src/components/valentine/LandingScreen.tsx",
+          "operation": "create",
+          "description": "Implement Landing Screen with exact text “Hey Beautiful… I made something just for you 💌” and glowing animated CTA labeled “Tap to feel loved”; on tap, trigger heartbeat SFX (respecting mute) and fade transition into the main content."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire LandingScreen as the initial view, manage the 'started' state for the single-page experience, and coordinate fade transition + starting background music only on Landing CTA gesture."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Create “Our Story” scroll-animated timeline with five specified entries, each with photo upload preview and editable love note.",
+      "acceptanceCriteria": [
+        "Timeline contains exactly the five specified entry titles in order.",
+        "Each entry animates into view as the user scrolls (soft slide + fade).",
+        "Each entry allows uploading at least one photo and shows a preview once selected.",
+        "Each entry provides an editable text area for a love note and updates the displayed content immediately."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/OurStoryTimeline.tsx",
+          "operation": "create",
+          "description": "Implement Section 1 “Our Story” as a scroll-based animated timeline with exactly five entries (in the specified order), each entry rendered in a glassmorphism card with soft slide+fade-on-reveal, photo upload (local preview), and editable love note."
+        },
+        {
+          "path": "frontend/src/hooks/useRevealOnScroll.ts",
+          "operation": "create",
+          "description": "Add an IntersectionObserver-based hook to support soft reveal animations for timeline entries and other sections without uncontrolled retriggering."
+        },
+        {
+          "path": "frontend/src/state/customizationStore.ts",
+          "operation": "create",
+          "description": "Create a small client-side store for timeline photos and love notes so edits reflect immediately across the UI (and can be persisted locally per REQ-13)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire OurStoryTimeline into the single-page flow after Landing and before subsequent sections."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create “12 Reasons I’m Crazy About You” as interactive flip cards; last card is special and reveals exact final message.",
+      "acceptanceCriteria": [
+        "There are 12 flip cards rendered in a responsive grid/stack appropriate for mobile.",
+        "Each card flips on tap/click and shows the corresponding message text on the back.",
+        "The last card has a noticeably stronger glow than the others.",
+        "The last card’s revealed text matches exactly: “And I’m never letting you go ❤️”."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/ReasonsFlipCards.tsx",
+          "operation": "create",
+          "description": "Implement Section 2 as 12 interactive flip cards (mobile-friendly layout) using glassmorphism styling; each flips on tap/click to reveal placeholder romantic messages, with the 12th card visually brighter and revealing exactly “And I’m never letting you go ❤️”."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire ReasonsFlipCards into the single-page flow."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Create “The Love Meter” animated fill to 100%, then broken state with exact message and confetti + heart explosion.",
+      "acceptanceCriteria": [
+        "Meter visibly animates from 0% to 100% (not instantaneous).",
+        "At completion, the UI transitions to a “broken” state and shows the exact error message.",
+        "Confetti animation and a distinct heart-explosion animation trigger at/after 100%.",
+        "The fill animation can be triggered in a predictable way (e.g., on section entering viewport or via a button), without repeatedly retriggering uncontrollably during scroll."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/confetti-hearts-spritesheet.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add generated confetti (with hearts) sprite sheet as a static frontend asset."
+        },
+        {
+          "path": "frontend/src/components/valentine/LoveMeter.tsx",
+          "operation": "create",
+          "description": "Implement Section 3 “The Love Meter” with a deterministic trigger (e.g., on first viewport entry) to animate from 0% to 100%; at 100% switch to a broken/error state showing exactly “System Error: Love too powerful to measure 💞” and trigger confetti + a distinct heart-explosion animation."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire LoveMeter into the single-page flow and ensure it does not repeatedly retrigger during scroll."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement the Final Surprise Moment: dim background, music swell, prompt with two exact buttons; either triggers fireworks then final exact message.",
+      "acceptanceCriteria": [
+        "Final section visually dims the background behind the prompt.",
+        "Both buttons are present with exact labels and are tappable on mobile.",
+        "Either button triggers the same outcome: fireworks animation + final love message.",
+        "Music swell behavior occurs on entering the final moment or on button click, and respects mute state."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/fireworks-spritesheet.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add generated fireworks sprite sheet as a static frontend asset."
+        },
+        {
+          "path": "frontend/src/components/valentine/FinalSurpriseMoment.tsx",
+          "operation": "create",
+          "description": "Implement the final section UI: dimmed backdrop layer, centered message “Will you be my forever Valentine?” with two buttons labeled exactly “Yes 🥺” and “Obviously Yes 😌”; on either click trigger fireworks animation then display exactly “I loved you yesterday. I love you today. I’ll love you more tomorrow.”; coordinate a safe music swell that respects mute state."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire FinalSurpriseMoment as the last section and connect it to the global AudioController to perform the music swell behavior."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add a live countdown to next Valentine’s Day and a floating bottom message visible in the final portion.",
+      "acceptanceCriteria": [
+        "Countdown targets the next Feb 14 relative to the current date (automatically choosing the next occurrence).",
+        "Countdown updates at least every second (or every minute, but must be clearly live/updating).",
+        "Footer message is fixed/floating near the bottom and remains readable over the background.",
+        "Footer text matches exactly (including emoji)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/ValentinesCountdown.tsx",
+          "operation": "create",
+          "description": "Implement a live countdown component that always targets the next Feb 14 relative to the current date, updating at least once per second."
+        },
+        {
+          "path": "frontend/src/components/valentine/FloatingLoveFooter.tsx",
+          "operation": "create",
+          "description": "Implement a floating/fixed bottom message for the final portion with exact text “Made with love, by your favorite person ❤️”, styled to remain readable over the ambient background."
+        },
+        {
+          "path": "frontend/src/components/valentine/FinalSurpriseMoment.tsx",
+          "operation": "modify",
+          "description": "Render ValentinesCountdown and FloatingLoveFooter within the final portion of the experience so they are visible near the end."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add a subtle tappable heart icon that reveals a hidden message after 5 taps.",
+      "acceptanceCriteria": [
+        "A small heart icon is present in the UI and is tappable/clickable.",
+        "After exactly 5 taps (within a reasonable time window or cumulatively), the hidden message is revealed.",
+        "Message text matches exactly (including punctuation).",
+        "Hidden message reveal is non-destructive (does not wipe user customization inputs)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/secret-heart-icon.dim_128x128.png",
+          "operation": "create",
+          "description": "Add generated subtle secret heart icon as a static frontend asset."
+        },
+        {
+          "path": "frontend/src/components/valentine/SecretHeartEasterEgg.tsx",
+          "operation": "create",
+          "description": "Implement a subtle tappable heart icon using the generated asset; track taps and reveal the exact hidden message “You’re the best thing that ever happened to me.” after exactly 5 taps without affecting any existing customization state."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire SecretHeartEasterEgg into a subtle persistent location (e.g., corner overlay) that remains accessible across the experience without blocking content."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add a secret code input that unlocks a second hidden message when matching the configured anniversary date.",
+      "acceptanceCriteria": [
+        "A code input UI is available (can be within the hidden feature area or a subtle modal).",
+        "Entering a value that matches the configured anniversary date unlocks and displays the exact future message.",
+        "Entering an incorrect value does not reveal the message and provides a gentle, on-theme response (no harsh error styling)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/SecretCodeUnlock.tsx",
+          "operation": "create",
+          "description": "Implement a small on-theme secret code input (can be shown inside the secret area) that compares entered code against the configured anniversary date and reveals exactly “You’re not just my Valentine. You’re my future.” on correct match; show gentle feedback on incorrect entries."
+        },
+        {
+          "path": "frontend/src/components/valentine/SecretHeartEasterEgg.tsx",
+          "operation": "modify",
+          "description": "Compose SecretCodeUnlock within the revealed hidden feature area so both hidden interactions live together."
+        },
+        {
+          "path": "frontend/src/state/customizationStore.ts",
+          "operation": "modify",
+          "description": "Ensure anniversary date is stored in customization state in a form usable for secret code matching."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Provide in-app customization fields for names, anniversary date, custom messages, timeline photos, and background music; changes reflect immediately without reload.",
+      "acceptanceCriteria": [
+        "A clear “Customize” area (panel/modal/section) exists where the user can edit the listed fields.",
+        "Edited values are reflected in the relevant sections (e.g., names appear where used, anniversary date drives countdown/secret code).",
+        "Photo uploads are previewed and used in the timeline entries.",
+        "Custom messages can override default placeholder copy in their respective sections."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/CustomizePanel.tsx",
+          "operation": "modify",
+          "description": "Expand the Customize panel to include fields for her name, your names, anniversary date, and override-able custom messages used throughout, as well as timeline photo uploads and background music upload; ensure updates immediately reflect across the UI."
+        },
+        {
+          "path": "frontend/src/state/customizationDefaults.ts",
+          "operation": "create",
+          "description": "Define default placeholder content (names, anniversary date placeholder, messages, timeline defaults) so Reset and first-run behavior is consistent."
+        },
+        {
+          "path": "frontend/src/components/valentine/ReasonsFlipCards.tsx",
+          "operation": "modify",
+          "description": "Read flip card messages from customization state so custom messages can override placeholders."
+        },
+        {
+          "path": "frontend/src/components/valentine/OurStoryTimeline.tsx",
+          "operation": "modify",
+          "description": "Bind timeline notes and photo previews to customization state so they reflect immediately as the user edits/uploads."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentinesCountdown.tsx",
+          "operation": "modify",
+          "description": "Use customization state anniversary date (for secret code matching) while keeping the countdown specifically targeting next Feb 14 per REQ-9."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire CustomizePanel into the experience (e.g., a floating 'Customize' button opening a panel/modal) ensuring it is accessible and on-theme without adding extra top-level routes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Persist customizations locally in-browser and provide Reset to defaults.",
+      "acceptanceCriteria": [
+        "After refreshing the page, previously entered customization values reappear (same browser).",
+        "Reset action restores default placeholder content and clears uploaded media selections.",
+        "Persistence does not require login or external services."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useLocalStorageState.ts",
+          "operation": "create",
+          "description": "Add a small typed hook for local persistence of customization settings via localStorage (including safe serialization and versioning)."
+        },
+        {
+          "path": "frontend/src/state/customizationStore.ts",
+          "operation": "modify",
+          "description": "Persist customization state to localStorage (text config + media object URL references or lightweight references as feasible) and implement a Reset to defaults action that clears uploaded selections and restores default placeholders."
+        },
+        {
+          "path": "frontend/src/components/valentine/CustomizePanel.tsx",
+          "operation": "modify",
+          "description": "Add a prominent, gentle on-theme “Reset to defaults” action and ensure it resets the UI immediately without reload."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Add optional Internet Identity save/load to canister for a single user configuration while preserving full local-only mode.",
+      "acceptanceCriteria": [
+        "When signed in with Internet Identity, user can save configuration to the canister and later load it back successfully.",
+        "Backend stores data keyed by caller principal and returns only the caller’s data.",
+        "When not signed in, the app remains usable with local persistence only and does not error.",
+        "Backend does not attempt to store raw image/audio binary in stable memory (store only text config; uploads remain local/front-end)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/CanisterSyncControls.tsx",
+          "operation": "create",
+          "description": "Implement optional “Save to canister” / “Load from canister” controls that use the authenticated principal when available; integrate Internet Identity login/logout UI using the selected authorization component patterns. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useCanisterUserSettings.ts",
+          "operation": "create",
+          "description": "Add a hook that uses the existing actor (from core infrastructure) to save/load the user's text-only configuration (names, anniversary date, messages) and maps it to/from the customization store; handle unauthenticated mode gracefully. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/state/customizationStore.ts",
+          "operation": "modify",
+          "description": "Add import/export helpers to convert customization state into a text-only configuration for canister save/load (explicitly excluding raw image/audio binaries)."
+        },
+        {
+          "path": "frontend/src/components/valentine/CustomizePanel.tsx",
+          "operation": "modify",
+          "description": "Compose CanisterSyncControls inside the Customize panel as an optional flow; ensure local-only mode remains the default and the app functions without sign-in. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

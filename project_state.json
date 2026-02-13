@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a private, mobile-first, cinematic romantic interactive web app titled “You Are My Favorite Love Story” for a Valentine’s Day surprise, featuring animated romantic visuals, music/sfx, interactive story sections, personalization, and a hidden easter egg.",
+  "architectural_notes": [
+    "Mobile-first responsive layout with smooth transitions/fades and glassmorphism styling",
+    "Audio architecture: background music with mute toggle plus short SFX (heartbeat)",
+    "User-editable content model: names/dates/messages + photo uploads wired into sections",
+    "Easter-egg interaction: multi-tap gesture + optional code-based unlock"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Seamless romantic background texture with soft bokeh and warm beige/pink tones (romantic-bg-texture.dim_1920x1080.png)\n- Set of 6 translucent flower petals sprites with subtle highlight (petal-sprite-set.dim_512x512.png)\n- Set of 6 soft glowing heart sprites, varied sizes (heart-sprite-set.dim_512x512.png)\n- Small minimal heart icon with gold accent, transparent background (secret-heart-icon.dim_128x128.png)\n- Fireworks burst sprite sheet, transparent background (fireworks-spritesheet.dim_1024x1024.png)\n- Confetti pieces sprite sheet with hearts mixed in, transparent background (confetti-hearts-spritesheet.dim_1024x1024.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-mobile-first-fully-responsive-single-page-romantic-web-experience-titled-you-are-my-favorite-love-story-with-a-consistent-visual-theme-soft-pink-deep-red-warm-beige-base-and-subtle-gold-accents-glassmorphism-cards-slow-fades-and-smooth-transitions-elegant-modern-typography-script-like-headings-clean-sans-serif-body",
+      "title": "Create a mobile-first, fully responsive single-page romantic web experience titled “You Are My Favorite Love Story” with a consistent visual theme: soft pink, deep red, warm beige base, and subtle gold accents; glassmorphism cards; slow fades and smooth transitions; elegant modern typography (script-like headings + clean sans-serif body).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-ambient-romantic-background-layer-with-animated-floating-petals-and-or-softly-glowing-hearts-that-runs-throughout-the-experience-without-blocking-content-interaction",
+      "title": "Implement an ambient romantic background layer with animated floating petals and/or softly glowing hearts that runs throughout the experience without blocking content interaction.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-background-romantic-instrumental-music-that-autoplays-only-after-an-explicit-user-gesture-e-g-tapping-the-landing-cta-includes-an-always-available-mute-unmute-toggle-and-supports-user-provided-music-upload-to-replace-the-default-track-for-the-current-session",
+      "title": "Add background romantic instrumental music that autoplays only after an explicit user gesture (e.g., tapping the landing CTA), includes an always-available mute/unmute toggle, and supports user-provided music upload to replace the default track for the current session.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-landing-screen-showing-the-exact-intro-text-hey-beautiful-i-made-something-just-for-you-and-a-glowing-animated-button-labeled-tap-to-feel-loved-on-click-tap-play-a-soft-heartbeat-sound-effect-and-fade-into-the-main-experience",
+      "title": "Build the Landing Screen showing the exact intro text “Hey Beautiful… I made something just for you 💌” and a glowing animated button labeled “Tap to feel loved”. On click/tap: play a soft heartbeat sound effect and fade into the main experience.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-section-1-our-story-as-a-scroll-based-animated-timeline-with-five-editable-entries-the-day-we-met-the-first-time-you-made-me-smile-our-most-random-funny-moment-the-moment-i-knew-you-were-different-and-today-still-choosing-you-each-entry-must-slide-in-with-a-soft-animation-support-photo-upload-and-include-a-short-love-note-input-area",
+      "title": "Create Section 1 “Our Story” as a scroll-based animated timeline with five editable entries: “The Day We Met”, “The First Time You Made Me Smile”, “Our Most Random Funny Moment”, “The Moment I Knew You Were Different”, and “Today — Still Choosing You”. Each entry must slide in with a soft animation, support photo upload, and include a short love note input area.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-section-2-12-reasons-i-m-crazy-about-you-as-interactive-flip-cards-cards-initially-show-a-short-front-label-on-click-tap-they-flip-to-reveal-the-provided-placeholder-messages-make-the-12th-last-card-visually-special-brighter-glow-and-on-reveal-show-the-exact-message-and-i-m-never-letting-you-go",
+      "title": "Create Section 2 “12 Reasons I’m Crazy About You” as interactive flip cards. Cards initially show a short front label; on click/tap they flip to reveal the provided placeholder messages. Make the 12th (last) card visually special (brighter glow) and on reveal show the exact message “And I’m never letting you go ❤️”.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-section-3-the-love-meter-with-an-animated-meter-that-fills-from-0-to-100-when-reaching-100-the-meter-breaks-and-displays-the-exact-message-system-error-love-too-powerful-to-measure-followed-by-a-confetti-plus-heart-explosion-animation",
+      "title": "Create Section 3 “The Love Meter” with an animated meter that fills from 0% to 100%. When reaching 100%, the meter “breaks” and displays the exact message “System Error: Love too powerful to measure 💞”, followed by a confetti plus heart-explosion animation.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-final-surprise-moment-section-dim-the-background-swell-the-music-increase-volume-or-intensify-effect-within-safe-levels-show-the-centered-message-will-you-be-my-forever-valentine-with-two-buttons-labeled-exactly-yes-and-obviously-yes-regardless-of-which-is-clicked-trigger-fireworks-animation-and-then-display-the-exact-message-i-loved-you-yesterday-i-love-you-today-i-ll-love-you-more-tomorrow",
+      "title": "Implement the Final Surprise Moment section: dim the background, swell the music (increase volume or intensify effect within safe levels), show the centered message “Will you be my forever Valentine?” with two buttons labeled exactly “Yes 🥺” and “Obviously Yes 😌”. Regardless of which is clicked, trigger fireworks animation and then display the exact message “I loved you yesterday. I love you today. I’ll love you more tomorrow.”",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-countdown-timer-to-next-valentine-s-day-and-a-floating-bottom-message-made-with-love-by-your-favorite-person-visible-in-the-final-portion-of-the-experience",
+      "title": "Add a countdown timer to next Valentine’s Day and a floating bottom message “Made with love, by your favorite person ❤️” visible in the final portion of the experience.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-secret-hidden-feature-show-a-small-heart-icon-somewhere-subtle-when-it-is-tapped-5-times-reveal-the-hidden-message-you-re-the-best-thing-that-ever-happened-to-me",
+      "title": "Implement a secret hidden feature: show a small heart icon somewhere subtle; when it is tapped 5 times, reveal the hidden message “You’re the best thing that ever happened to me.”",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-optional-secret-code-unlock-provide-a-simple-input-for-a-secret-code-e-g-anniversary-date-that-when-correctly-matched-to-the-configured-anniversary-date-reveals-you-re-not-just-my-valentine-you-re-my-future",
+      "title": "Add the optional secret code unlock: provide a simple input for a secret code (e.g., anniversary date) that, when correctly matched to the configured anniversary date, reveals “You’re not just my Valentine. You’re my future.”",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-in-app-customization-fields-to-edit-her-name-your-names-anniversary-date-custom-messages-used-throughout-the-experience-photo-uploads-used-in-the-timeline-and-background-music-upload-customizations-must-immediately-reflect-in-the-ui-without-requiring-a-reload",
+      "title": "Provide in-app customization fields to edit: her name, your names, anniversary date, custom messages used throughout the experience, photo uploads used in the timeline, and background music upload. Customizations must immediately reflect in the UI without requiring a reload.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-customization-data-and-uploaded-media-references-locally-in-the-browser-so-the-surprise-can-be-prepared-and-reopened-on-the-same-device-and-provide-a-reset-to-defaults-action",
+      "title": "Persist customization data and uploaded media references locally in the browser (so the surprise can be prepared and reopened on the same device) and provide a “Reset to defaults” action.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-minimal-motoko-backend-model-for-saving-and-retrieving-a-single-project-configuration-per-authenticated-internet-identity-user-names-anniversary-date-messages-frontend-should-offer-an-optional-save-to-canister-load-from-canister-flow-that-uses-the-authenticated-principal-app-must-still-work-without-signing-in-local-only-mode",
+      "title": "Add a minimal Motoko backend model for saving and retrieving a single “project” configuration per authenticated Internet Identity user (names, anniversary date, messages). Frontend should offer an optional “Save to canister” / “Load from canister” flow that uses the authenticated principal; app must still work without signing in (local-only mode).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Implement romantic landing screen with intro text, glowing CTA button, heartbeat sound on click, and fade transition into the experience",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create “Our Story” scroll-animated interactive timeline with editable entries, photo uploads, and love note fields",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create “12 Reasons I’m Crazy About You” interactive flip cards including a special glowing final card message",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement animated “Love Meter” that fills to 100%, then triggers ‘System Error’ message plus confetti/heart explosion animation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement final surprise screen with dimmed background, swelling music, two ‘Yes’ buttons leading to fireworks + final love message, plus countdown timer to next Valentine’s Day and a floating footer message",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add background romantic instrumental music with mute toggle and support for user-provided music upload",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add secret hidden feature: tap small heart icon 5 times to reveal hidden message; optional secret code (e.g., anniversary date) unlocks an additional message",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add customization fields for names, anniversary date, custom messages, and photo uploads used throughout the app",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Implement overall design system: soft pink/deep red/warm beige/gold accents, floating petals/hearts, glassmorphism cards, smooth slow fades/transitions, elegant script + sans-serif fonts, fully responsive mobile-first layout",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "You Are My Favorite Love Story",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

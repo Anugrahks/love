@@ -1,0 +1,112 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T11:17:12.378Z",
+  "summary": "Diff adds a Valentine single-page frontend with landing, ambient canvas background, audio controller, timeline, flip-cards, love meter, final surprise with fireworks, countdown/footer, secret heart + secret code unlock, customization panel, and Internet Identity + canister save/load hooks. Backend adds a Motoko actor with access control mixin and user settings APIs. Several text-exactness and specific behavior requirements are not met based on the shown diffs, and some extra backend/UX features were added that were not requested.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Heartbeat SFX must respect mute state (if muted, heartbeat does not play or plays at 0 volume) while still transitioning.",
+      "reason": "LandingScreen always plays heartbeat at volume 0.5 and does not consult the app mute state from AudioController/customization.",
+      "evidence": [
+        "frontend/src/components/valentine/LandingScreen.tsx",
+        "frontend/src/components/valentine/AudioController.tsx"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "On reaching 100%, meter must display the exact message “System Error: Love too powerful to measure 💞”.",
+      "reason": "The UI shows “⚠️ SYSTEM ERROR ⚠️” and separately “Love too powerful to measure 💞”, which does not match the exact required combined string.",
+      "evidence": [
+        "frontend/src/components/valentine/LoveMeter.tsx"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Trigger both a confetti animation and a distinct heart-explosion animation at/after 100%.",
+      "reason": "Only a ConfettiAnimation is shown; while confetti pieces can be hearts, there is no separate/explicit heart-explosion effect implemented in the shown file.",
+      "evidence": [
+        "frontend/src/components/valentine/LoveMeter.tsx"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Music swell behavior (increase volume/intensify) in the Final Surprise Moment that respects mute state.",
+      "reason": "FinalSurpriseMoment does not interact with audio at all, and AudioController uses a fixed volume (0.3) with only a mute toggle; no swell logic is evidenced.",
+      "evidence": [
+        "frontend/src/components/valentine/FinalSurpriseMoment.tsx",
+        "frontend/src/components/valentine/AudioController.tsx"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Floating bottom message text must match exactly: “Made with love, by your favorite person ❤️”.",
+      "reason": "Rendered footer text is “Made with [Heart icon] by your favorite person ❤️” (missing comma after 'love' and injects an icon/extra text structure).",
+      "evidence": [
+        "frontend/src/components/valentine/FloatingLoveFooter.tsx"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "requirement": "Incorrect secret code should provide a gentle, on-theme response with no harsh error styling.",
+      "reason": "The incorrect-code hint uses `text-destructive`, which is explicitly error-styled and may violate the 'no harsh error styling' criterion.",
+      "evidence": [
+        "frontend/src/components/valentine/SecretCodeUnlock.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend access-control system with admin/user permissions, secret-token initialization, user profiles, default string storage, and message storage/sorting APIs.",
+      "reason": "REQ-14 only asked for a minimal per-principal project configuration save/load model (names, anniversary date, messages). The diff adds broader authz, profiles, default string registry, and message features not requested.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Footer includes an external promotional link to caffeine.ai with UTM parameters.",
+      "reason": "BuildRequest did not request any external promo links; it also emphasizes a private experience and no extra integrations.",
+      "evidence": [
+        "frontend/src/components/valentine/FloatingLoveFooter.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/valentine/AmbientBackground.tsx",
+    "frontend/src/components/valentine/AudioController.tsx",
+    "frontend/src/components/valentine/CanisterSyncControls.tsx",
+    "frontend/src/components/valentine/CustomizePanel.tsx",
+    "frontend/src/components/valentine/FinalSurpriseMoment.tsx",
+    "frontend/src/components/valentine/FireworksAnimation.tsx",
+    "frontend/src/components/valentine/FloatingLoveFooter.tsx",
+    "frontend/src/components/valentine/GlassCard.tsx",
+    "frontend/src/components/valentine/LandingScreen.tsx",
+    "frontend/src/components/valentine/LoveMeter.tsx",
+    "frontend/src/components/valentine/OurStoryTimeline.tsx",
+    "frontend/src/components/valentine/ReasonsFlipCards.tsx",
+    "frontend/src/components/valentine/SecretCodeUnlock.tsx",
+    "frontend/src/components/valentine/SecretHeartEasterEgg.tsx",
+    "frontend/src/components/valentine/ValentinesCountdown.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useCanisterUserSettings.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useLocalStorageState.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useRevealOnScroll.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/state/customizationDefaults.ts",
+    "frontend/src/state/customizationStore.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

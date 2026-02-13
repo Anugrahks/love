@@ -1,0 +1,299 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-mobile-first-fully-responsive-single-page-romantic-web-experience-titled-you-are-my-favorite-love-story-with-a-consistent-visual-theme-soft-pink-deep-red-warm-beige-base-and-subtle-gold-accents-glassmorphism-cards-slow-fades-and-smooth-transitions-elegant-modern-typography-script-like-headings-clean-sans-serif-body",
+      "featureTitle": "Create a mobile-first, fully responsive single-page romantic web experience titled “You Are My Favorite Love Story” with a consistent visual theme: soft pink, deep red, warm beige base, and subtle gold accents; glassmorphism cards; slow fades and smooth transitions; elegant modern typography (script-like headings + clean sans-serif body).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/GlassCard.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-an-ambient-romantic-background-layer-with-animated-floating-petals-and-or-softly-glowing-hearts-that-runs-throughout-the-experience-without-blocking-content-interaction",
+      "featureTitle": "Implement an ambient romantic background layer with animated floating petals and/or softly glowing hearts that runs throughout the experience without blocking content interaction.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/AmbientBackground.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-background-romantic-instrumental-music-that-autoplays-only-after-an-explicit-user-gesture-e-g-tapping-the-landing-cta-includes-an-always-available-mute-unmute-toggle-and-supports-user-provided-music-upload-to-replace-the-default-track-for-the-current-session",
+      "featureTitle": "Add background romantic instrumental music that autoplays only after an explicit user gesture (e.g., tapping the landing CTA), includes an always-available mute/unmute toggle, and supports user-provided music upload to replace the default track for the current session.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/AudioController.tsx",
+        "frontend/src/components/valentine/CustomizePanel.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-landing-screen-showing-the-exact-intro-text-hey-beautiful-i-made-something-just-for-you-and-a-glowing-animated-button-labeled-tap-to-feel-loved-on-click-tap-play-a-soft-heartbeat-sound-effect-and-fade-into-the-main-experience",
+      "featureTitle": "Build the Landing Screen showing the exact intro text “Hey Beautiful… I made something just for you 💌” and a glowing animated button labeled “Tap to feel loved”. On click/tap: play a soft heartbeat sound effect and fade into the main experience.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/LandingScreen.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-section-1-our-story-as-a-scroll-based-animated-timeline-with-five-editable-entries-the-day-we-met-the-first-time-you-made-me-smile-our-most-random-funny-moment-the-moment-i-knew-you-were-different-and-today-still-choosing-you-each-entry-must-slide-in-with-a-soft-animation-support-photo-upload-and-include-a-short-love-note-input-area",
+      "featureTitle": "Create Section 1 “Our Story” as a scroll-based animated timeline with five editable entries: “The Day We Met”, “The First Time You Made Me Smile”, “Our Most Random Funny Moment”, “The Moment I Knew You Were Different”, and “Today — Still Choosing You”. Each entry must slide in with a soft animation, support photo upload, and include a short love note input area.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/OurStoryTimeline.tsx",
+        "frontend/src/hooks/useRevealOnScroll.ts",
+        "frontend/src/state/customizationStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-section-2-12-reasons-i-m-crazy-about-you-as-interactive-flip-cards-cards-initially-show-a-short-front-label-on-click-tap-they-flip-to-reveal-the-provided-placeholder-messages-make-the-12th-last-card-visually-special-brighter-glow-and-on-reveal-show-the-exact-message-and-i-m-never-letting-you-go",
+      "featureTitle": "Create Section 2 “12 Reasons I’m Crazy About You” as interactive flip cards. Cards initially show a short front label; on click/tap they flip to reveal the provided placeholder messages. Make the 12th (last) card visually special (brighter glow) and on reveal show the exact message “And I’m never letting you go ❤️”.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/ReasonsFlipCards.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-section-3-the-love-meter-with-an-animated-meter-that-fills-from-0-to-100-when-reaching-100-the-meter-breaks-and-displays-the-exact-message-system-error-love-too-powerful-to-measure-followed-by-a-confetti-plus-heart-explosion-animation",
+      "featureTitle": "Create Section 3 “The Love Meter” with an animated meter that fills from 0% to 100%. When reaching 100%, the meter “breaks” and displays the exact message “System Error: Love too powerful to measure 💞”, followed by a confetti plus heart-explosion animation.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/LoveMeter.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-final-surprise-moment-section-dim-the-background-swell-the-music-increase-volume-or-intensify-effect-within-safe-levels-show-the-centered-message-will-you-be-my-forever-valentine-with-two-buttons-labeled-exactly-yes-and-obviously-yes-regardless-of-which-is-clicked-trigger-fireworks-animation-and-then-display-the-exact-message-i-loved-you-yesterday-i-love-you-today-i-ll-love-you-more-tomorrow",
+      "featureTitle": "Implement the Final Surprise Moment section: dim the background, swell the music (increase volume or intensify effect within safe levels), show the centered message “Will you be my forever Valentine?” with two buttons labeled exactly “Yes 🥺” and “Obviously Yes 😌”. Regardless of which is clicked, trigger fireworks animation and then display the exact message “I loved you yesterday. I love you today. I’ll love you more tomorrow.”",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/FinalSurpriseMoment.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-countdown-timer-to-next-valentine-s-day-and-a-floating-bottom-message-made-with-love-by-your-favorite-person-visible-in-the-final-portion-of-the-experience",
+      "featureTitle": "Add a countdown timer to next Valentine’s Day and a floating bottom message “Made with love, by your favorite person ❤️” visible in the final portion of the experience.",
+      "files": [
+        "frontend/src/components/valentine/FinalSurpriseMoment.tsx",
+        "frontend/src/components/valentine/FloatingLoveFooter.tsx",
+        "frontend/src/components/valentine/ValentinesCountdown.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-secret-hidden-feature-show-a-small-heart-icon-somewhere-subtle-when-it-is-tapped-5-times-reveal-the-hidden-message-you-re-the-best-thing-that-ever-happened-to-me",
+      "featureTitle": "Implement a secret hidden feature: show a small heart icon somewhere subtle; when it is tapped 5 times, reveal the hidden message “You’re the best thing that ever happened to me.”",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/SecretHeartEasterEgg.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-the-optional-secret-code-unlock-provide-a-simple-input-for-a-secret-code-e-g-anniversary-date-that-when-correctly-matched-to-the-configured-anniversary-date-reveals-you-re-not-just-my-valentine-you-re-my-future",
+      "featureTitle": "Add the optional secret code unlock: provide a simple input for a secret code (e.g., anniversary date) that, when correctly matched to the configured anniversary date, reveals “You’re not just my Valentine. You’re my future.”",
+      "files": [
+        "frontend/src/components/valentine/SecretCodeUnlock.tsx",
+        "frontend/src/components/valentine/SecretHeartEasterEgg.tsx",
+        "frontend/src/state/customizationStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-in-app-customization-fields-to-edit-her-name-your-names-anniversary-date-custom-messages-used-throughout-the-experience-photo-uploads-used-in-the-timeline-and-background-music-upload-customizations-must-immediately-reflect-in-the-ui-without-requiring-a-reload",
+      "featureTitle": "Provide in-app customization fields to edit: her name, your names, anniversary date, custom messages used throughout the experience, photo uploads used in the timeline, and background music upload. Customizations must immediately reflect in the UI without requiring a reload.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/CustomizePanel.tsx",
+        "frontend/src/components/valentine/OurStoryTimeline.tsx",
+        "frontend/src/components/valentine/ReasonsFlipCards.tsx",
+        "frontend/src/components/valentine/ValentinesCountdown.tsx",
+        "frontend/src/state/customizationDefaults.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-persist-customization-data-and-uploaded-media-references-locally-in-the-browser-so-the-surprise-can-be-prepared-and-reopened-on-the-same-device-and-provide-a-reset-to-defaults-action",
+      "featureTitle": "Persist customization data and uploaded media references locally in the browser (so the surprise can be prepared and reopened on the same device) and provide a “Reset to defaults” action.",
+      "files": [
+        "frontend/src/components/valentine/CustomizePanel.tsx",
+        "frontend/src/hooks/useLocalStorageState.ts",
+        "frontend/src/state/customizationStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-minimal-motoko-backend-model-for-saving-and-retrieving-a-single-project-configuration-per-authenticated-internet-identity-user-names-anniversary-date-messages-frontend-should-offer-an-optional-save-to-canister-load-from-canister-flow-that-uses-the-authenticated-principal-app-must-still-work-without-signing-in-local-only-mode",
+      "featureTitle": "Add a minimal Motoko backend model for saving and retrieving a single “project” configuration per authenticated Internet Identity user (names, anniversary date, messages). Frontend should offer an optional “Save to canister” / “Load from canister” flow that uses the authenticated principal; app must still work without signing in (local-only mode).",
+      "files": [
+        "frontend/src/components/valentine/CanisterSyncControls.tsx",
+        "frontend/src/components/valentine/CustomizePanel.tsx",
+        "frontend/src/hooks/useCanisterUserSettings.ts",
+        "frontend/src/state/customizationStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
